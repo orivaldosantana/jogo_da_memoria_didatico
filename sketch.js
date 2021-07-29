@@ -8,9 +8,11 @@ var suavizaB;
 
 var tela = 0; 
 var fonteGeral; 
+var imgFundo; 
 
 function preload(){
-  fonteGeral = loadFont("bouncy.otf")
+  fonteGeral = loadFont("bouncy.otf");
+  imgFundo = loadImage("imagens/fundo4.png");
 }
 
 
@@ -27,11 +29,12 @@ function setup() {
 function draw() {
 
   if ( tela == 0 ) { 
-    background(220);
+    //background(220);
+    image(imgFundo,0,0)
     textFont(fonteGeral);
     textSize(28);
     
-    fill(255)  
+    fill(100)  
     if ( mouseY > yb1 && mouseY < yb1 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
       if ( mouseIsPressed ) {
         console.log("Botão 1")
@@ -40,10 +43,10 @@ function draw() {
       fill(153,50,204)
     }
     rect(xb,yb1,larguraB,alturaB,suavizaB); 
-    fill(0)
+    fill(30)
     text("Créditos",xb+35,yb1+40);
     
-    fill(255)  
+    fill(100)  
     if ( mouseY > yb2 && mouseY < yb2 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
       if ( mouseIsPressed ) {
         console.log("Botão 2")
@@ -57,7 +60,7 @@ function draw() {
     text("Instruções", xb+15,yb2+40);
     fill(255)
   }  
-  if ( tela == 1){
+  if ( tela == 1 ){
     background(0);
     fill(255);
     textSize(32);
