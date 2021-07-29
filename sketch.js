@@ -7,6 +7,12 @@ var alturaB;
 var suavizaB; 
 
 var tela = 0; 
+var fonteGeral; 
+
+function preload(){
+  fonteGeral = loadFont("bouncy.otf")
+}
+
 
 function setup() {
   createCanvas(400, 400);
@@ -22,7 +28,7 @@ function draw() {
 
   if ( tela == 0 ) { 
     background(220);
-
+    textFont(fonteGeral);
     textSize(28);
     
     fill(255)  
@@ -35,7 +41,7 @@ function draw() {
     }
     rect(xb,yb1,larguraB,alturaB,suavizaB); 
     fill(0)
-    text("Créditos",xb+50,yb1+40);
+    text("Créditos",xb+35,yb1+40);
     
     fill(255)  
     if ( mouseY > yb2 && mouseY < yb2 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
@@ -48,7 +54,7 @@ function draw() {
     rect(xb,yb2,larguraB,alturaB,suavizaB); 
 
     fill(0)
-    text("Instruções", xb+40,yb2+40);
+    text("Instruções", xb+15,yb2+40);
     fill(255)
   }  
   if ( tela == 1){
