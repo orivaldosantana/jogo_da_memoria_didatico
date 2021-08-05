@@ -2,6 +2,10 @@
 var xb; 
 var yb1; 
 var yb2; 
+var yVoltar;
+var xVoltar; 
+var larguraVoltar;
+var alturaVoltar; 
 var larguraB;
 var alturaB; 
 var suavizaB; 
@@ -21,7 +25,11 @@ function setup() {
   xb = 100; 
   yb1 = 150; 
   yb2 = 250; 
+  yVoltar = 340; 
+  xVoltar = 270; 
   larguraB = 200; 
+  larguraVoltar = 100;
+  alturaVoltar = 40;
   alturaB = 60; 
   suavizaB = 12; 
 }
@@ -59,6 +67,21 @@ function draw() {
     fill(255);
     textSize(32);
     text("Tela Créditos", 50, 50 );
+
+    //animação 
+    if ( mouseY > yVoltar && mouseY < yVoltar + alturaVoltar && mouseX > xVoltar && mouseX < xVoltar+larguraVoltar ){
+      fill(250,200,150);
+      if(mouseIsPressed){
+        tela = 0; 
+      }
+    }
+    else {
+      noFill() 
+    }
+    rect(xVoltar,yVoltar,larguraVoltar,alturaVoltar,suavizaB); 
+    textSize(18);
+    text("Voltar",xVoltar+10,yVoltar+25)
+
   }
   if ( tela == 2){
     background(0);
