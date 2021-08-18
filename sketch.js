@@ -34,62 +34,100 @@ function setup() {
   suavizaB = 12; 
 }
 
-function draw() {
+function telaMenu() {
+  //background(220);
+  image(imgFundo,0,0)
+  textFont(fonteGeral);
 
-  if ( tela == 0 ) { 
-    //background(220);
-    image(imgFundo,0,0)
-    textFont(fonteGeral);
-    textSize(28);
-    
-    fill(100)  
-    if ( mouseY > yb1 && mouseY < yb1 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
-      fill(203,100,104)
-    }
-    rect(xb,yb1,larguraB,alturaB,suavizaB); 
+  textSize(40);
+  fill("#FFDFC9");
+  strokeWeight(5); 
+  text("Juego", 140, 40);
+  text("Del Memoria", 60, 90); 
+  strokeWeight(3)  
+
+  // Botão de Créditos 
+  fill(100)  
+  if ( mouseY > yb1 && mouseY < yb1 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
+    fill(203,100,104)
+  }
+  rect(xb,yb1,larguraB,alturaB,suavizaB); 
+  textSize(28);
+  fill("#FF8303")
+  stroke(30)
+  text("Créditos",xb+35,yb1+40);
   
-    fill(100)  
-    if ( mouseY > yb2 && mouseY < yb2 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
-      fill(150,200,150)
-    }
-    rect(xb,yb2,larguraB,alturaB,suavizaB); 
 
-    // Textos da tela 
-    fill("#FF8303")
-    stroke(30)
-    strokeWeight(3) 
-    text("Instruções", xb+15,yb2+40);
-    text("Créditos",xb+35,yb1+40);
-    fill(255)
+  // Botão de Instruções
+  fill(100)  
+  if ( mouseY > yb2 && mouseY < yb2 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
+    fill(150,200,150)
+  }
+  rect(xb,yb2,larguraB,alturaB,suavizaB); 
+  textSize(28);
+  fill("#FF8303")
+  stroke(30)
+  text("Instruções", xb+15,yb2+40);
+  
+
+
+  fill(255)
+}
+
+function telaCreditos() {
+  background(0);
+  fill(255);
+  textSize(32);
+  text("Tela Créditos", 50, 50 );
+
+  //botão voltar  
+  if ( mouseY > yVoltar && mouseY < yVoltar + alturaVoltar && mouseX > xVoltar && mouseX < xVoltar+larguraVoltar ){
+    fill(250,200,150);
+    if(mouseIsPressed){
+      tela = 0; 
+    }
+  }
+  else {
+    noFill() 
+  }
+  rect(xVoltar,yVoltar,larguraVoltar,alturaVoltar,suavizaB); 
+  textSize(18);
+  text("Voltar",xVoltar+10,yVoltar+25)
+}
+
+
+
+function draw() {
+  if ( tela == 0 ) { 
+    telaMenu(); 
   }  
   if ( tela == 1 ){
-    background(0);
-    fill(255);
-    textSize(32);
-    text("Tela Créditos", 50, 50 );
-
-    //animação 
-    if ( mouseY > yVoltar && mouseY < yVoltar + alturaVoltar && mouseX > xVoltar && mouseX < xVoltar+larguraVoltar ){
-      fill(250,200,150);
-      if(mouseIsPressed){
-        tela = 0; 
-      }
-    }
-    else {
-      noFill() 
-    }
-    rect(xVoltar,yVoltar,larguraVoltar,alturaVoltar,suavizaB); 
-    textSize(18);
-    text("Voltar",xVoltar+10,yVoltar+25)
-
+    telaCreditos(); 
   }
   if ( tela == 2){
-    background(0);
-    fill(255);
-    textSize(32);
-    text("Tela Instruções", 50, 50 );
+    telaInstrucoes(); 
   }
+}
 
+function telaInstrucoes() {
+  background(0);
+  fill(255);
+  textSize(32);
+  text("Tela Instruções", 50, 50 );
+
+  //botão voltar 
+  if ( mouseY > yVoltar && mouseY < yVoltar + alturaVoltar && mouseX > xVoltar && mouseX < xVoltar+larguraVoltar ){
+    fill(250,200,150);
+    if(mouseIsPressed){
+      tela = 0; 
+    }
+  }
+  else {
+    noFill() 
+  }
+  rect(xVoltar,yVoltar,larguraVoltar,alturaVoltar,suavizaB); 
+  textSize(18);
+  text("Voltar",xVoltar+10,yVoltar+25)
 }
 
 
@@ -106,4 +144,13 @@ function mouseClicked() {
       }
     }
   } 
+}
+
+function keyPressed() {
+  if (tela === 1 || tela === 2  ) {
+    if ( keyCode === ESCAPE ){
+      tela = 0
+    }
+  }
+
 }
