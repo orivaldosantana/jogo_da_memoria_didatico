@@ -2,6 +2,7 @@
 var xb; 
 var yb1; 
 var yb2; 
+var yb3; 
 var yVoltar;
 var xVoltar; 
 var larguraVoltar;
@@ -25,6 +26,7 @@ function setup() {
   xb = 100; 
   yb1 = 150; 
   yb2 = 250; 
+  yb3 = 350;
   yVoltar = 340; 
   xVoltar = 270; 
   larguraB = 200; 
@@ -55,7 +57,7 @@ function telaMenu() {
   textSize(28);
   fill("#FF8303")
   stroke(30)
-  text("Créditos",xb+35,yb1+40);
+  text("Jogar",xb+35,yb1+40);
   
 
   // Botão de Instruções
@@ -68,6 +70,19 @@ function telaMenu() {
   fill("#FF8303")
   stroke(30)
   text("Instruções", xb+15,yb2+40);
+
+
+   // Botão de Créditos 
+   fill(100)  
+   if ( mouseY > yb3 && mouseY < yb3 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
+     fill(203,100,104)
+   }
+   rect(xb,yb3,larguraB,alturaB,suavizaB); 
+   textSize(28);
+   fill("#FF8303")
+   stroke(30)
+   text("Créditos",xb+35,yb3+40);
+   
   
 
 
@@ -102,11 +117,20 @@ function draw() {
     telaMenu(); 
   }  
   if ( tela == 1 ){
-    telaCreditos(); 
+    telaDoJogo(); 
   }
   if ( tela == 2){
     telaInstrucoes(); 
   }
+  if (tela == 3){
+    telaCreditos(); 
+  }
+}
+
+function telaDoJogo(){
+  background(0);
+  
+
 }
 
 function telaInstrucoes() {
@@ -141,6 +165,12 @@ function mouseClicked() {
       if ( mouseY > yb2 && mouseY < yb2 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
         console.log("Botão 2")
         tela = 2
+      }
+      else {
+        if ( mouseY > yb3 && mouseY < yb3 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
+          console.log("Botão 2")
+          tela = 3
+        }
       }
     }
   } 
