@@ -14,19 +14,25 @@ var suavizaB;
 var tela = 0; 
 var fonteGeral; 
 var imgFundo; 
+var imgCarta1; 
+var imgFundoCarta; 
+var cartaVirada; 
 
 function preload(){
   fonteGeral = loadFont("bouncy-black.otf");
   imgFundo = loadImage("imagens/fundo4.png");
+  imgFundoCarta = loadImage("imagens/cartas/fundoCarta.png")
+  imgCarta1 = loadImage("imagens/cartas/1.png")
 }
 
 
 function setup() {
-  createCanvas(400, 400);
-  xb = 100; 
-  yb1 = 150; 
-  yb2 = 250; 
-  yb3 = 350;
+  createCanvas(500, 500);
+  cartaVirada = true; 
+  xb = 150; 
+  yb1 = 200; 
+  yb2 = 300; 
+  yb3 = 400;
   yVoltar = 340; 
   xVoltar = 270; 
   larguraB = 200; 
@@ -44,8 +50,8 @@ function telaMenu() {
   textSize(40);
   fill("#FFDFC9");
   strokeWeight(5); 
-  text("Juego", 140, 40);
-  text("Del Memoria", 60, 90); 
+  text("Juego", 180, 80);
+  text("Del Memoria", 110, 130); 
   strokeWeight(3)  
 
   // Botão de Créditos 
@@ -72,19 +78,17 @@ function telaMenu() {
   text("Instruções", xb+15,yb2+40);
 
 
-   // Botão de Créditos 
-   fill(100)  
-   if ( mouseY > yb3 && mouseY < yb3 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
-     fill(203,100,104)
-   }
-   rect(xb,yb3,larguraB,alturaB,suavizaB); 
-   textSize(28);
-   fill("#FF8303")
-   stroke(30)
-   text("Créditos",xb+35,yb3+40);
+  // Botão de Créditos 
+  fill(100)  
+  if ( mouseY > yb3 && mouseY < yb3 + alturaB && mouseX > xb && mouseX < xb+larguraB ){
+    fill(203,100,104)
+  }
+  rect(xb,yb3,larguraB,alturaB,suavizaB); 
+  textSize(28);
+  fill("#FF8303")
+  stroke(30)
+  text("Créditos",xb+35,yb3+40);
    
-  
-
 
   fill(255)
 }
@@ -129,7 +133,11 @@ function draw() {
 
 function telaDoJogo(){
   background(0);
-  
+  if (cartaVirada)
+    image(imgCarta1,10,50);
+  else 
+    image(imgFundoCarta,10,50,100,100);
+
 
 }
 
@@ -172,6 +180,10 @@ function mouseClicked() {
           tela = 3
         }
       }
+    }
+  } else {
+    if ( tela == 1) {
+      cartaVirada = ! cartaVirada
     }
   } 
 }
