@@ -8,6 +8,7 @@
 * Implementando o botão voltar, https://youtu.be/NBBCDRfGEoU 
 * Tecla ESC para voltar para o menu do jogo, https://youtu.be/PkZeDCTupaw
 * Organizado o código do jogo com funções simples, https://youtu.be/oR_KOXRyCyA
+* Estratégia para virar e desvirar uma carta de um tabuleiro, https://youtu.be/izpvfgw44x0
 
 
 ## Referências 
