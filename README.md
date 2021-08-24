@@ -9,6 +9,7 @@
 * Tecla ESC para voltar para o menu do jogo, https://youtu.be/PkZeDCTupaw
 * Organizado o código do jogo com funções simples, https://youtu.be/oR_KOXRyCyA
 * Estratégia para virar e desvirar uma carta de um tabuleiro, https://youtu.be/izpvfgw44x0
+* Organizando e mostrando um tabuleiro de cartas em uma matriz, https://youtu.be/5-5Q6PYrld0
 
 
 ## Referências 
