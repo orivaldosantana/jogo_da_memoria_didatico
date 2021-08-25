@@ -16,8 +16,14 @@ var fonteGeral;
 var imgFundo; 
 var imgFundoCarta; 
 var cartaVirada; 
+var matrizCartasViradas = []; 
 var imgCartas = []; 
-var matrizImgCartas = []
+var matrizImgCartas = [];
+
+var imgCartaLargura = 102; 
+var imgCartaAltura = 102; 
+var posInicialX = 40;
+var posInicialY = 80; 
 
 function preload(){
   fonteGeral = loadFont("bouncy-black.otf");
@@ -33,14 +39,15 @@ function preload(){
   cont=0;
   for (l=0; l<4; l++){
     tempImgLinha = []; 
+    tempVCartaVirada = []
     for (c=0; c<4; c++){
       tempImgLinha[c] = imgCartas[cont]; 
+      tempVCartaVirada[c] = false; 
       cont++;  
     }
+    matrizCartasViradas[l] = tempVCartaVirada; 
     matrizImgCartas[l] = tempImgLinha;
   }
-
-
 }
 
 
@@ -151,26 +158,41 @@ function draw() {
   }
 }
 
+function convertePosMousePosMatriz(mx,my){
+  mx = mx - posInicialX;
+  my = my - posInicialY; 
+  let posC = parseInt(mx/imgCartaLargura); 
+  let posL = parseInt(my/imgCartaAltura); 
+  console.log(posL+" "+posC); 
+
+}
+
 function mostraCartas() {
 
-  posInicialX = 40
-  posInicialY = 80 
-  imgCartaLargura = 102 
-  imgCartaAltura = 102 
+
+  
   //posX = posInicialX
   let posY = posInicialY 
   for (l=0; l<4; l++) { 
     let posX = posInicialX
     for (c=0; c<4; c++) { 
-      image(matrizImgCartas[l][c],posX,posY);
+      if ( matrizCartasViradas[l][c] ){
+        image(matrizImgCartas[l][c],posX,posY);
+      }
+      else {
+        image(imgFundoCarta,posX,posY,100,100);
+      }
       posX = posX + imgCartaLargura 
     }
     posY = posY + imgCartaAltura
   }
+
+   
 }
 
 function telaDoJogo(){
   background(0);
+  convertePosMousePosMatriz(mouseX,mouseY); 
   /*
   if (cartaVirada)
     image(matrizImgCartas[0][1],10,50);
