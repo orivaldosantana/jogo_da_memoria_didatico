@@ -10,6 +10,7 @@
 * Organizado o código do jogo com funções simples, https://youtu.be/oR_KOXRyCyA
 * Estratégia para virar e desvirar uma carta de um tabuleiro, https://youtu.be/izpvfgw44x0
 * Organizando e mostrando um tabuleiro de cartas em uma matriz, https://youtu.be/5-5Q6PYrld0
+* Utilizando uma matriz para guardar o estado da carta em um tabuleiro, https://youtu.be/QUC0-AcEqKo 
 
 
 ## Referências 
