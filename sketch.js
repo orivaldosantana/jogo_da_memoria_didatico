@@ -17,13 +17,21 @@ var imgFundo;
 var imgFundoCarta; 
 var cartaVirada; 
 var matrizCartasViradas = []; 
+var matrizMatch = []; 
+var matrizValores = [];
+var valoresCartas = [];  
 var imgCartas = []; 
 var matrizImgCartas = [];
+var matrizTamanho = 4; 
 
 var imgCartaLargura = 102; 
 var imgCartaAltura = 102; 
 var posInicialX = 40;
-var posInicialY = 80; 
+var posInicialY = 80;
+
+var linColAnterior = []; 
+
+var contClicks = 0; 
 
 function preload(){
   fonteGeral = loadFont("bouncy-black.otf");
@@ -33,20 +41,28 @@ function preload(){
   for (i=1; i<=8; i++){
     tempImg = loadImage("imagens/cartas/"+i+".png");
     imgCartas.push(tempImg);
+    valoresCartas.push(i); 
     tempImg = loadImage("imagens/cartas/"+i+".1.png");
     imgCartas.push(tempImg);
+    valoresCartas.push(i); 
   }
   cont=0;
   for (l=0; l<4; l++){
     tempImgLinha = []; 
-    tempVCartaVirada = []
+    tempVCartaVirada = [];
+    tempVValor = []; 
+    tempVMath = []; 
     for (c=0; c<4; c++){
       tempImgLinha[c] = imgCartas[cont]; 
+      tempVValor[c] = valoresCartas[cont]; 
       tempVCartaVirada[c] = false; 
+      tempVMath[c] = false; 
       cont++;  
     }
     matrizCartasViradas[l] = tempVCartaVirada; 
     matrizImgCartas[l] = tempImgLinha;
+    matrizValores[l] = tempVValor; 
+    matrizMatch[l] = tempVMath; 
   }
 }
 
@@ -66,7 +82,7 @@ function setup() {
   alturaB = 60; 
   suavizaB = 12; 
 
-  console.log(imgCartas.length); 
+  console.log(matrizMatch); 
 }
 
 function telaMenu() {
@@ -164,6 +180,10 @@ function convertePosMousePosMatriz(mx,my){
   let posC = parseInt(mx/imgCartaLargura); 
   let posL = parseInt(my/imgCartaAltura); 
   console.log(posL+" "+posC); 
+  posLC = [];
+  posLC[0] = posL;
+  posLC[1] = posC; 
+  return posLC; 
 
 }
 
@@ -176,7 +196,7 @@ function mostraCartas() {
   for (l=0; l<4; l++) { 
     let posX = posInicialX
     for (c=0; c<4; c++) { 
-      if ( matrizCartasViradas[l][c] ){
+      if ( matrizCartasViradas[l][c] || matrizMatch[l][c] ){
         image(matrizImgCartas[l][c],posX,posY);
       }
       else {
@@ -192,7 +212,7 @@ function mostraCartas() {
 
 function telaDoJogo(){
   background(0);
-  convertePosMousePosMatriz(mouseX,mouseY); 
+  //convertePosMousePosMatriz(mouseX,mouseY); 
   /*
   if (cartaVirada)
     image(matrizImgCartas[0][1],10,50);
@@ -245,9 +265,35 @@ function mouseClicked() {
     }
   } else {
     if ( tela == 1) {
-      cartaVirada = ! cartaVirada
+      //cartaVirada = ! cartaVirada
+      linCol = convertePosMousePosMatriz(mouseX,mouseY);
+      console.log(linCol);
+      matrizCartasViradas[linCol[0]][linCol[1]] = true; 
+      contClicks = contClicks + 1; 
+      console.log("Cliques: "+contClicks);
+      if(contClicks == 2 ){
+        if (matrizValores[linCol[0]][linCol[1]] == matrizValores[linColAnterior[0]][linColAnterior[1]]){
+          console.log(matrizMatch); 
+          matrizMatch[linCol[0]][linCol[1]] = true; 
+          matrizMatch[linColAnterior[0]][linColAnterior[1]] = true; 
+        }
+      }
+      if ( contClicks > 2 ){ 
+        // marca todoas as cartas como desviradas 
+        for ( l = 0; l<matrizTamanho; l++ ){
+          for( c = 0; c<matrizTamanho; c++ ){
+            matrizCartasViradas[l][c] = false; 
+          }
+        }
+        matrizCartasViradas[linCol[0]][linCol[1]] = true;
+        contClicks = 1; 
+      }
+      if (contClicks == 1 ){
+        linColAnterior = linCol; 
+      } 
     }
   } 
+  
 }
 
 function keyPressed() {
