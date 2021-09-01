@@ -265,7 +265,7 @@ function mouseClicked() {
     }
   } else {
     if ( tela == 1) {
-      //cartaVirada = ! cartaVirada
+      //vira uma carta 
       linCol = convertePosMousePosMatriz(mouseX,mouseY);
       console.log(linCol);
       matrizCartasViradas[linCol[0]][linCol[1]] = true; 
@@ -279,12 +279,13 @@ function mouseClicked() {
         }
       }
       if ( contClicks > 2 ){ 
-        // marca todoas as cartas como desviradas 
+        // marca todas as cartas como desviradas 
         for ( l = 0; l<matrizTamanho; l++ ){
           for( c = 0; c<matrizTamanho; c++ ){
             matrizCartasViradas[l][c] = false; 
           }
         }
+        // exceto a última carta clicada 
         matrizCartasViradas[linCol[0]][linCol[1]] = true;
         contClicks = 1; 
       }
