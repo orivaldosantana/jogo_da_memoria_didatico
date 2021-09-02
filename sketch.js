@@ -268,30 +268,33 @@ function mouseClicked() {
       //vira uma carta 
       linCol = convertePosMousePosMatriz(mouseX,mouseY);
       console.log(linCol);
-      matrizCartasViradas[linCol[0]][linCol[1]] = true; 
-      contClicks = contClicks + 1; 
-      console.log("Cliques: "+contClicks);
-      if(contClicks == 2 ){
-        if (matrizValores[linCol[0]][linCol[1]] == matrizValores[linColAnterior[0]][linColAnterior[1]]){
-          console.log(matrizMatch); 
-          matrizMatch[linCol[0]][linCol[1]] = true; 
-          matrizMatch[linColAnterior[0]][linColAnterior[1]] = true; 
-        }
-      }
-      if ( contClicks > 2 ){ 
-        // marca todas as cartas como desviradas 
-        for ( l = 0; l<matrizTamanho; l++ ){
-          for( c = 0; c<matrizTamanho; c++ ){
-            matrizCartasViradas[l][c] = false; 
+      if (matrizCartasViradas[linCol[0]][linCol[1]] === false && matrizMatch[linCol[0]][linCol[1]] === false) {
+        matrizCartasViradas[linCol[0]][linCol[1]] = true; 
+        contClicks = contClicks + 1; 
+        
+        if(contClicks == 2 ){
+          if (matrizValores[linCol[0]][linCol[1]] == matrizValores[linColAnterior[0]][linColAnterior[1]]){
+            console.log(matrizMatch); 
+            matrizMatch[linCol[0]][linCol[1]] = true; 
+            matrizMatch[linColAnterior[0]][linColAnterior[1]] = true; 
           }
         }
-        // exceto a última carta clicada 
-        matrizCartasViradas[linCol[0]][linCol[1]] = true;
-        contClicks = 1; 
+        if ( contClicks > 2 ){ 
+          // marca todas as cartas como desviradas 
+          for ( l = 0; l<matrizTamanho; l++ ){
+            for( c = 0; c<matrizTamanho; c++ ){
+              matrizCartasViradas[l][c] = false; 
+            }
+          }
+          // exceto a última carta clicada 
+          matrizCartasViradas[linCol[0]][linCol[1]] = true;
+          contClicks = 1; 
+        }
+        console.log("Cliques: "+contClicks);
+        if (contClicks == 1 ){
+          linColAnterior = linCol; 
+        } 
       }
-      if (contClicks == 1 ){
-        linColAnterior = linCol; 
-      } 
     }
   } 
   
