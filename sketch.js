@@ -33,6 +33,10 @@ var linColAnterior = [];
 
 var contClicks = 0; 
 
+var contTempo = 0; 
+const framesPorSegundo = 30; 
+var contSegundos = 0; 
+
 function preload(){
   fonteGeral = loadFont("bouncy-black.otf");
   imgFundo = loadImage("imagens/fundo4.png");
@@ -66,6 +70,7 @@ function preload(){
   }
 }
 
+ 
 
 function setup() {
   createCanvas(500, 500);
@@ -81,6 +86,8 @@ function setup() {
   alturaVoltar = 40;
   alturaB = 60; 
   suavizaB = 12; 
+
+  frameRate(framesPorSegundo); 
 
   console.log(matrizMatch); 
 }
@@ -219,7 +226,20 @@ function telaDoJogo(){
   else 
     image(imgFundoCarta,10,50,100,100);
   */
+  textSize(20);
+  textFont('Helvetica'); 
+  text("Tempo: "+contSegundos, 300,50); 
   mostraCartas();
+  if ( contClicks == 1 || contClicks == 2 ){
+    contTempo++; 
+    contSegundos = parseInt(  contTempo / framesPorSegundo );
+    if ( contSegundos > 5 ){
+      contTempo = 0;
+      contClicks = 0; 
+      desviraCaras(); 
+      contSegundos = 0; 
+    } 
+  }
 
 }
 
@@ -242,6 +262,15 @@ function telaInstrucoes() {
   rect(xVoltar,yVoltar,larguraVoltar,alturaVoltar,suavizaB); 
   textSize(18);
   text("Voltar",xVoltar+10,yVoltar+25)
+}
+
+function desviraCaras(){
+  // marca todas as cartas como desviradas 
+  for ( l = 0; l<matrizTamanho; l++ ){
+    for( c = 0; c<matrizTamanho; c++ ){
+      matrizCartasViradas[l][c] = false; 
+    }
+  }
 }
 
 
@@ -277,19 +306,19 @@ function mouseClicked() {
             console.log(matrizMatch); 
             matrizMatch[linCol[0]][linCol[1]] = true; 
             matrizMatch[linColAnterior[0]][linColAnterior[1]] = true; 
+            contTempo = 0;
+
           }
         }
+
         if ( contClicks > 2 ){ 
-          // marca todas as cartas como desviradas 
-          for ( l = 0; l<matrizTamanho; l++ ){
-            for( c = 0; c<matrizTamanho; c++ ){
-              matrizCartasViradas[l][c] = false; 
-            }
-          }
+          desviraCaras(); 
           // exceto a última carta clicada 
           matrizCartasViradas[linCol[0]][linCol[1]] = true;
-          contClicks = 1; 
+          contClicks = 1;
+          contTempo = 0; 
         }
+
         console.log("Cliques: "+contClicks);
         if (contClicks == 1 ){
           linColAnterior = linCol; 
