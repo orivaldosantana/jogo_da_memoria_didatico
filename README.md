@@ -12,6 +12,10 @@
 * Organizando e mostrando um tabuleiro de cartas em uma matriz, https://youtu.be/5-5Q6PYrld0
 * Utilizando uma matriz para guardar o estado da carta em um tabuleiro, https://youtu.be/QUC0-AcEqKo 
 * Relacionado a posição do mouse com uma posição de uma matriz num tabuleiro de cartas, https://youtu.be/SeA7mtbMUaE
+* Registrando as cartas que foram viradas em uma rodada, https://youtu.be/ZMUNw-A0SC4
+* Limitando em dois a quantidade de cartas viradas no tabuleiro, https://youtu.be/f_P_xO9MpBc
+* Identificando as cartas equivalentes no tabuleiro para mantê-las viradas, https://youtu.be/bzoLe_obp2g
+* Desvirando as cartas depois de um determinado tempo, https://youtu.be/V-IMpfni83o
 
 
 ## Referências 
