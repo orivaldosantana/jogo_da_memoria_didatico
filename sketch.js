@@ -337,3 +337,21 @@ function keyPressed() {
   }
 
 }
+
+/* Rascunho função embaralhar  
+
+function embaralhar() {
+  for(i=0; i<16; i++) {
+    vetorA[i] = i; 
+  }
+  vetorB = [] 
+  qtInicalElementos = vetorA.length; 
+  for (j=0; j<qtInicalElementos; j++) {
+    i = parseInt( Math.random()* vetorA.length )
+    vx = vetorA.splice(i,1) 
+    vetorB.push(vx[0]) 
+  } 
+  console.log(vetorB);  
+}
+
+*/
