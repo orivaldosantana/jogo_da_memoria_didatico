@@ -24,6 +24,9 @@ var imgCartas = [];
 var matrizImgCartas = [];
 var matrizTamanho = 4; 
 
+var indicesOriginais = []; 
+var indicesEmbaralhados = []; 
+
 var imgCartaLargura = 102; 
 var imgCartaAltura = 102; 
 var posInicialX = 40;
@@ -50,6 +53,22 @@ function preload(){
     imgCartas.push(tempImg);
     valoresCartas.push(i); 
   }
+  
+}
+
+ 
+
+function setup() {
+  createCanvas(500, 500);
+
+  for(i=0; i<16; i++) {
+    indicesOriginais[i] = i; 
+  }
+  indicesEmbaralhados = embaralhar(indicesOriginais)
+  console.log(indicesEmbaralhados); 
+
+
+
   cont=0;
   for (l=0; l<4; l++){
     tempImgLinha = []; 
@@ -57,8 +76,8 @@ function preload(){
     tempVValor = []; 
     tempVMath = []; 
     for (c=0; c<4; c++){
-      tempImgLinha[c] = imgCartas[cont]; 
-      tempVValor[c] = valoresCartas[cont]; 
+      tempImgLinha[c] = imgCartas[indicesEmbaralhados[ cont] ]; 
+      tempVValor[c] = valoresCartas[indicesEmbaralhados[cont] ]; 
       tempVCartaVirada[c] = false; 
       tempVMath[c] = false; 
       cont++;  
@@ -68,12 +87,8 @@ function preload(){
     matrizValores[l] = tempVValor; 
     matrizMatch[l] = tempVMath; 
   }
-}
 
- 
 
-function setup() {
-  createCanvas(500, 500);
   cartaVirada = true; 
   xb = 150; 
   yb1 = 200; 
@@ -191,7 +206,6 @@ function convertePosMousePosMatriz(mx,my){
   posLC[0] = posL;
   posLC[1] = posC; 
   return posLC; 
-
 }
 
 function mostraCartas() {
@@ -338,12 +352,10 @@ function keyPressed() {
 
 }
 
-/* Rascunho função embaralhar  
+/* Rascunho função embaralhar  */
 
-function embaralhar() {
-  for(i=0; i<16; i++) {
-    vetorA[i] = i; 
-  }
+function embaralhar(vetorA) {
+
   vetorB = [] 
   qtInicalElementos = vetorA.length; 
   for (j=0; j<qtInicalElementos; j++) {
@@ -351,7 +363,6 @@ function embaralhar() {
     vx = vetorA.splice(i,1) 
     vetorB.push(vx[0]) 
   } 
-  console.log(vetorB);  
+  //console.log(vetorB); 
+  return vetorB; 
 }
-
-*/
