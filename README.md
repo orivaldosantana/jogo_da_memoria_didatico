@@ -16,6 +16,7 @@
 * Limitando em dois a quantidade de cartas viradas no tabuleiro, https://youtu.be/f_P_xO9MpBc
 * Identificando as cartas equivalentes no tabuleiro para mantê-las viradas, https://youtu.be/bzoLe_obp2g
 * Desvirando as cartas depois de um determinado tempo, https://youtu.be/V-IMpfni83o
+* Embaralhando as cartas de um tabuleiro, https://youtu.be/wtu1JfkrbZg 
 
 
 ## Referências 
