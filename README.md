@@ -1,6 +1,6 @@
 # Jogo da Memória Didático
 
-# Vídeos 
+## Vídeos 
 * Desenvolvendo a parte inicial do jogo, aula sobre como construir o menu do Jogo, https://youtu.be/opXjoeeKhOM
 * Modificando a fonte do texto, https://youtu.be/Npl8Lop_ulo
 * Inserindo uma imagem, https://youtu.be/axm_QWB_pfE 
@@ -18,6 +18,8 @@
 * Desvirando as cartas depois de um determinado tempo, https://youtu.be/V-IMpfni83o
 * Embaralhando as cartas de um tabuleiro, https://youtu.be/wtu1JfkrbZg 
 
+## Aplicação 
+Para jogar acesse: https://orivaldosantana.github.io/jogo_da_memoria_didatico/ 
 
 ## Referências 
 
